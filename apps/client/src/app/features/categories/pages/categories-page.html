@@ -1,0 +1,95 @@
+<app-page-header title="Categories" subtitle="Manage all product categories." buttonText="Add Category" (buttonClick)="openCreateDialog()">
+</app-page-header>
+
+<app-search-bar placeholder="Search categories">
+</app-search-bar>
+
+<section class="table-card">
+
+    <div class="table-header">
+
+        <span>Name</span>
+
+        <span>UUID</span>
+
+        <span>Created</span>
+
+        <span class="actions-header">Actions</span>
+
+    </div>
+
+    @if(store.loading()) {
+
+    <div class="loading">
+
+        Loading categories...
+
+    </div>
+
+    } @else {
+
+    @if(store.categories().length){
+
+    @for(category of store.categories(); track category.id){
+
+    <div class="table-row">
+
+        <div class="name">
+
+            {{ category.name }}
+
+        </div>
+
+        <div class="uuid">
+
+            {{ category.uuid }}
+
+        </div>
+
+        <div class="created">
+
+            {{ category.createdAt | date:'dd MMM yyyy' }}
+
+        </div>
+
+        <div class="actions">
+
+            <button mat-icon-button class="edit-btn" (click)="editCategory(category)">
+
+                <mat-icon>
+
+                    edit
+
+                </mat-icon>
+
+            </button>
+
+            <button mat-icon-button class="delete-btn" (click)="deleteCategory(category)">
+
+                <mat-icon>
+
+                    delete_outline
+
+                </mat-icon>
+
+            </button>
+
+        </div>
+
+    </div>
+
+    }
+
+    } @else {
+
+    <div class="empty">
+
+        No categories found.
+
+    </div>
+
+    }
+
+    }
+
+</section>

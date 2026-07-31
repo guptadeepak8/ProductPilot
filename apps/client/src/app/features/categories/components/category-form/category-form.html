@@ -1,0 +1,69 @@
+<h2 mat-dialog-title>
+
+    {{ category ? 'Edit Category' : 'Create Category' }}
+
+</h2>
+
+<p class="subtitle">
+
+    {{ category
+        ? 'Update the category.'
+        : 'Create a new category.' }}
+
+</p>
+
+<mat-dialog-content>
+
+    <form [formGroup]="form">
+
+        <mat-form-field
+            appearance="outline"
+            class="field">
+
+            <mat-label>
+
+                Category Name
+
+            </mat-label>
+
+            <input
+                matInput
+                formControlName="name">
+
+            @if(form.controls.name.hasError('required')){
+
+                <mat-error>
+
+                    Category name is required
+
+                </mat-error>
+
+            }
+
+        </mat-form-field>
+
+    </form>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+
+    <button
+        mat-button
+        (click)="close()">
+
+        Cancel
+
+    </button>
+
+    <button
+        mat-flat-button
+        color="primary"
+        (click)="save()"
+        [disabled]="form.invalid">
+
+        {{ category ? 'Update' : 'Create' }}
+
+    </button>
+
+</mat-dialog-actions>

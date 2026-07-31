@@ -25,6 +25,7 @@ export class PageHeader {
 
   readonly buttonText = input.required<string>();
 
-  readonly create = output<void>();
+  readonly buttonClick = output<void>();
+
 
 }

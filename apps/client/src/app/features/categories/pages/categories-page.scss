@@ -1,0 +1,204 @@
+:host {
+
+  display: block;
+
+}
+
+/* ---------- Table ---------- */
+
+.table-card {
+
+  margin-top: 24px;
+
+  border: 1px solid #27272a;
+
+  border-radius: 14px;
+
+  overflow: hidden;
+
+  background: #111111;
+
+}
+
+/* ---------- Header ---------- */
+
+.table-header {
+
+  display: grid;
+
+  grid-template-columns: 220px 1fr 170px 120px;
+
+  align-items: center;
+
+  padding: 18px 24px;
+
+  border-bottom: 1px solid #27272a;
+
+  color: #71717a;
+
+  font-size: 11px;
+
+  font-weight: 600;
+
+  letter-spacing: .08em;
+
+  text-transform: uppercase;
+
+}
+
+/* ---------- Row ---------- */
+
+.table-row {
+
+  display: grid;
+
+  grid-template-columns: 220px 1fr 170px 120px;
+
+  align-items: center;
+
+  padding: 18px 24px;
+
+  border-bottom: 1px solid #202020;
+
+  transition: background .18s ease;
+
+}
+
+.table-row:last-child {
+
+  border-bottom: none;
+
+}
+
+.table-row:hover {
+
+  background: #18181b;
+
+}
+
+/* ---------- Typography ---------- */
+
+.name {
+
+  color: #fafafa;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+}
+
+.uuid {
+
+  color: #a1a1aa;
+
+  font-size: 13px;
+
+  font-family: ui-monospace,
+               SFMono-Regular,
+               Menlo,
+               Monaco,
+               Consolas,
+               monospace;
+
+  overflow: hidden;
+
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+
+}
+
+.created {
+
+  color: #d4d4d8;
+
+  font-size: 13px;
+
+}
+
+/* ---------- Actions ---------- */
+
+.actions {
+
+  display: flex;
+
+  justify-content: flex-end;
+
+  align-items: center;
+
+  gap: 6px;
+
+}
+
+.actions button {
+
+  width: 36px;
+
+  height: 36px;
+
+  border-radius: 8px;
+
+  transition: all .15s ease;
+
+}
+
+.actions mat-icon {
+
+  font-size: 18px;
+
+  width: 18px;
+
+  height: 18px;
+
+}
+
+/* ---------- Edit ---------- */
+
+.edit-btn {
+
+  color: #d4d4d8;
+
+}
+
+.edit-btn:hover {
+
+  background: rgba(255,255,255,.06);
+
+  color: #ffffff;
+
+}
+
+/* ---------- Delete ---------- */
+
+.delete-btn {
+
+  color: #f87171;
+
+}
+
+.delete-btn:hover {
+
+  background: rgba(248,113,113,.12);
+
+}
+
+/* ---------- Loading ---------- */
+
+.loading,
+
+.empty {
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  height: 240px;
+
+  color: #71717a;
+
+  font-size: 14px;
+
+}
