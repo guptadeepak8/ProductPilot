@@ -1,6 +1,7 @@
 import { Type } from "@angular/core";
 
 export * from "./category"
+export * from "./product"
 
 export interface User {
   id: number;
@@ -34,5 +35,27 @@ export interface DialogConfig<T = unknown> {
   inputs?: Record<string, unknown>;
 
   width?: string;
+
+}
+
+
+export interface BulkUploadResponse {
+
+  success: boolean;
+
+  message: string;
+
+  imported: number;
+
+  skipped: number;
+
+
+  errors: {
+
+    row: number;
+
+    reason: string;
+
+  }[];
 
 }

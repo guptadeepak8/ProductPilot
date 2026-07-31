@@ -1,0 +1,185 @@
+<app-page-header title="Products" subtitle="Manage inventory products." buttonText="Add Product"
+    (buttonClick)="openCreateDialog()">
+
+</app-page-header>
+
+<app-search-bar placeholder="Search products" (searchChange)="onSearch($event)">
+
+</app-search-bar>
+
+<section class="table-card">
+
+    <div class="table-header">
+        <span>ID</span>
+
+        <span>Product</span>
+
+        <span>Category</span>
+
+        <span class="sortable" (click)="toggleSort()">
+
+            Price
+
+            <mat-icon>
+
+                {{ store.sort() === 'asc'
+                ? 'arrow_upward'
+                : 'arrow_downward' }}
+
+            </mat-icon>
+
+        </span>
+
+        <span>Image</span>
+
+        <span>Created</span>
+
+        <span></span>
+
+    </div>
+
+    @if(store.loading()){
+
+    <div class="loading">
+
+        Loading products...
+
+    </div>
+
+    }
+
+    @else if(store.products().length){
+
+    @for(product of store.products();track product.id){
+
+    <div class="table-row">
+
+         <div class="id">
+
+        #{{ product.id }}
+
+    </div>
+
+        <div class="name">
+
+            {{ product.name }}
+
+        </div>
+
+        <div class="category">
+
+            {{ product.category.name }}
+
+        </div>
+
+        <div class="price">
+
+            ₹{{ product.price }}
+
+        </div>
+
+        <div class="image">
+
+            @if(product.image){
+
+            <a>
+
+                Open
+
+                <mat-icon>
+
+                    open_in_new
+
+                </mat-icon>
+
+            </a>
+
+            }@else{
+
+            <span class="empty-image">
+
+                No Image
+
+            </span>
+
+            }
+
+        </div>
+
+        <div class="created">
+
+            {{ product.createdAt | date:'dd MMM yyyy' }}
+
+        </div>
+
+        <div class="actions">
+
+            <button mat-icon-button class="edit-btn" (click)="editProduct(product)">
+
+                <mat-icon>
+
+                    edit
+
+                </mat-icon>
+
+            </button>
+
+            <button mat-icon-button class="delete-btn" (click)="deleteProduct(product)">
+
+                <mat-icon>
+
+                    delete_outline
+
+                </mat-icon>
+
+            </button>
+
+        </div>
+
+    </div>
+
+    }
+
+    }
+
+    @else{
+
+    <div class="empty">
+
+        No products found.
+
+    </div>
+
+    }
+
+</section>
+
+<div class="pagination">
+
+    <button
+        mat-button
+        (click)="previousPage()"
+        [disabled]="store.page() === 1">
+
+        Previous
+
+    </button>
+
+    <span>
+
+        Page {{ store.page() }}
+        of
+        {{ store.totalPages() }}
+
+    </span>
+
+    <button
+        mat-button
+        (click)="nextPage()"
+        [disabled]="store.page() === store.totalPages()">
+
+        Next
+
+    </button>
+
+</div>

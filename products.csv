@@ -1,0 +1,31 @@
+name,price,category,image
+iPhone 16,79999,electronic,https://example.com/images/iphone16.jpg
+Samsung Galaxy S25,74999,electronic,https://example.com/images/galaxy-s25.jpg
+Google Pixel 10,68999,electronic,https://example.com/images/pixel10.jpg
+OnePlus 14,54999,electronic,https://example.com/images/oneplus14.jpg
+MacBook Air M5,129900,electronic,https://example.com/images/macbook-air.jpg
+Dell XPS 15,145000,electronic,https://example.com/images/dell-xps15.jpg
+HP Spectre x360,119999,electronic,https://example.com/images/hp-spectre.jpg
+Lenovo ThinkPad X1,139999,electronic,https://example.com/images/thinkpad-x1.jpg
+Sony WH-1000XM6,29999,electronic,https://example.com/images/sony-xm6.jpg
+Logitech MX Master 4,9999,electronic,https://example.com/images/mx-master4.jpg
+Mechanical Keyboard,6999,electronic,
+Gaming Mouse,3499,electronic,
+USB-C Hub,2499,electronic,
+Wireless Charger,1999,electronic,
+27 Inch Monitor,18999,electronic,https://example.com/images/monitor27.jpg
+Office Chair,12999,furniture,https://example.com/images/office-chair.jpg
+Standing Desk,25999,furniture,https://example.com/images/standing-desk.jpg
+Bookshelf,8999,furniture,
+Coffee Table,5999,furniture,
+LED Desk Lamp,2499,furniture,
+Sofa Set,45999,furniture,https://example.com/images/sofa.jpg
+Dining Table,32999,furniture,
+Study Table,8999,furniture,
+Water Bottle,599,stationery,
+Notebook A5,299,stationery,
+Ball Pen Pack,149,stationery,
+Backpack Pro,3499,stationery,
+Whiteboard Marker,199,stationery,
+Calculator,799,stationery,
+Printer Paper A4,399,stationery,

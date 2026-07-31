@@ -1,0 +1,122 @@
+<h2 mat-dialog-title>
+
+    {{ product ? 'Edit Product' : 'Create Product' }}
+
+</h2>
+
+<p class="subtitle">
+
+    {{ product
+        ? 'Update product details.'
+        : 'Add a new inventory product.' }}
+
+</p>
+
+<mat-dialog-content>
+
+    <form [formGroup]="form" class="form">
+
+    <mat-form-field appearance="outline" class="field full">
+
+        <mat-label>
+
+            Product Name
+
+        </mat-label>
+
+        <input
+            matInput
+            formControlName="name">
+
+    </mat-form-field>
+
+    <div class="row">
+
+        <mat-form-field
+            appearance="outline"
+            class="field">
+
+            <mat-label>
+
+                Price
+
+            </mat-label>
+
+            <input
+                matInput
+                type="number"
+                formControlName="price">
+
+        </mat-form-field>
+
+        <mat-form-field
+            appearance="outline"
+            class="field">
+
+            <mat-label>
+
+                Category
+
+            </mat-label>
+
+            <mat-select
+                formControlName="categoryId">
+
+                @for(category of categories();track category.id){
+
+                    <mat-option
+                        [value]="category.id">
+
+                        {{ category.name }}
+
+                    </mat-option>
+
+                }
+
+            </mat-select>
+
+        </mat-form-field>
+
+    </div>
+
+    <mat-form-field
+        appearance="outline"
+        class="field full">
+
+        <mat-label>
+
+            Image URL (optional)
+
+        </mat-label>
+
+        <input
+            matInput
+            formControlName="image">
+
+    </mat-form-field>
+
+</form>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+
+    <button
+        mat-button
+        (click)="close()">
+
+        Cancel
+
+    </button>
+
+    <button
+        mat-flat-button
+        color="primary"
+        (click)="save()"
+        [disabled]="form.invalid">
+
+        {{ product ? 'Update' : 'Create' }}
+
+    </button>
+
+</mat-dialog-actions>

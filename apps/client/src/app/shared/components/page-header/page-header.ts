@@ -23,7 +23,7 @@ export class PageHeader {
 
   readonly subtitle = input.required<string>();
 
-  readonly buttonText = input.required<string>();
+  readonly buttonText = input('');
 
   readonly buttonClick = output<void>();
 

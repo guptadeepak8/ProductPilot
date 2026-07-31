@@ -16,8 +16,7 @@ export const routes: Routes = [
       import('./layout/dashboard/dashboard.routes').then((m) => m.DASHBOARD_ROUTES),
   },
   {
-    path: '',
-    loadChildren: () =>
-      import('./features/categories/category.routes').then((m) => m.CATEGORY_ROUTES),
+    path: '**',
+    redirectTo: 'login',
   },
 ];

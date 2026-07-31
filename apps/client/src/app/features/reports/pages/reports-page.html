@@ -1,0 +1,50 @@
+<app-page-header
+    title="Reports"
+    subtitle="Export inventory reports.">
+</app-page-header>
+
+<section class="report-card">
+
+    <div class="report-icon">
+
+        <mat-icon>
+
+            description
+
+        </mat-icon>
+
+    </div>
+
+    <h2>
+
+        Product Inventory Report
+
+    </h2>
+
+    <p>
+
+        Download an Excel report containing every
+        product, category, price, image URL and
+        creation date.
+
+    </p>
+
+    <button
+        mat-flat-button
+        color="primary"
+        (click)="download()"
+        [disabled]="loading()">
+
+        @if(loading()){
+
+            Generating Report...
+
+        }@else{
+
+            Download Excel Report
+
+        }
+
+    </button>
+
+</section>

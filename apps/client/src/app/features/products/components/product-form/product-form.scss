@@ -1,0 +1,49 @@
+:host{
+
+    display:block;
+
+}
+
+.subtitle{
+
+    margin:0 24px 22px;
+
+    color:#a1a1aa;
+
+    font-size:14px;
+
+    line-height:1.6;
+
+}
+
+.form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.row{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:18px;
+
+}
+
+.field{
+
+    width:100%;
+
+}
+
+.full{
+
+    grid-column:1 / -1;
+
+}

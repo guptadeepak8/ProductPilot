@@ -24,7 +24,7 @@ import { ConfirmDialog } from '../../../shared/components/dialogs/confirm-dialog
 })
 export class CategoriesPage implements OnInit {
   private readonly service = inject(CategoryService);
- private readonly dialog = inject(MatDialog);
+  private readonly dialog = inject(MatDialog);
   readonly store = inject(CategoryStore);
 
   ngOnInit(): void {
@@ -47,105 +47,74 @@ export class CategoriesPage implements OnInit {
   }
 
   openCreateDialog(): void {
+    const dialogRef = this.dialog.open(CategoryForm, {
+      width: '500px',
 
-  const dialogRef = this.dialog.open(CategoryForm, {
+      disableClose: true,
 
-    width: '500px',
+      panelClass: 'pp-dialog',
 
-    disableClose: true,
-
-    panelClass: 'pp-dialog',
-
-    data: null,
-
-  });
-
-  dialogRef.afterClosed().subscribe(category => {
-
-    if (!category) {
-
-      return;
-
-    }
-
-    this.store.addCategory(category);
-
-  });
-
-}
-
-editCategory(category: Category): void {
-
-  const dialogRef = this.dialog.open(CategoryForm, {
-
-    width: '500px',
-
-    disableClose: true,
-
-    panelClass: 'pp-dialog',
-
-    data: category,
-
-  });
-
-  dialogRef.afterClosed().subscribe(updated => {
-
-    if (!updated) {
-
-      return;
-
-    }
-
-    this.store.updateCategory(updated);
-
-  });
-
-}
-
-  deleteCategory(category: Category): void {
-
-  const dialogRef = this.dialog.open(ConfirmDialog, {
-
-    width: '420px',
-
-    panelClass: 'pp-dialog',
-
-    data: {
-
-      title: 'Delete Category',
-
-      message:
-        `Are you sure you want to delete "${category.name}"?\n\nThis action cannot be undone.`,
-
-      confirmText: 'Delete',
-
-      cancelText: 'Cancel',
-
-    },
-
-  });
-
-  dialogRef.afterClosed().subscribe(result => {
-
-    if (!result) {
-
-      return;
-
-    }
-
-    this.service.delete(category.id).subscribe({
-
-      next: () => {
-
-        this.store.removeCategory(category.id);
-
-      },
-
-      error: console.error,
-
+      data: null,
     });
 
-  });
+    dialogRef.afterClosed().subscribe((category) => {
+      if (!category) {
+        return;
+      }
 
-}
+      this.store.addCategory(category);
+    });
+  }
+
+  editCategory(category: Category): void {
+    const dialogRef = this.dialog.open(CategoryForm, {
+      width: '500px',
+
+      disableClose: true,
+
+      panelClass: 'pp-dialog',
+
+      data: category,
+    });
+
+    dialogRef.afterClosed().subscribe((updated) => {
+      if (!updated) {
+        return;
+      }
+
+      this.store.updateCategory(updated);
+    });
+  }
+
+  deleteCategory(category: Category): void {
+    const dialogRef = this.dialog.open(ConfirmDialog, {
+      width: '420px',
+
+      panelClass: 'pp-dialog',
+
+      data: {
+        title: 'Delete Category',
+
+        message: `Are you sure you want to delete "${category.name}"?\n\nThis action cannot be undone.`,
+
+        confirmText: 'Delete',
+
+        cancelText: 'Cancel',
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (!result) {
+        return;
+      }
+
+      this.service.delete(category.id).subscribe({
+        next: () => {
+          this.store.removeCategory(category.id);
+        },
+
+        error: console.error,
+      });
+    });
+  }
 }

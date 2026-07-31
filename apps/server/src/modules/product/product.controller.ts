@@ -13,13 +13,10 @@ import { generateProductReport } from "./product.report.service.js";
 export async function createProductController(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) {
   try {
-    const product = await createProductService({
-    ...req.body,
-    image: req.file?.filename ?? null
-});
+    const product = await createProductService(req.body);
 
     return res.status(201).json({
       success: true,
@@ -34,7 +31,7 @@ export async function createProductController(
 export async function getProductsController(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) {
   try {
     const page = Number(req.query.page) || 1;
@@ -42,21 +39,11 @@ export async function getProductsController(
     const limit = Number(req.query.limit) || 10;
 
     const search =
-      typeof req.query.search === "string"
-        ? req.query.search
-        : undefined;
+      typeof req.query.search === "string" ? req.query.search : undefined;
 
-    const sort =
-      req.query.sort === "desc"
-        ? "desc"
-        : "asc";
+    const sort = req.query.sort === "desc" ? "desc" : "asc";
 
-    const result = await getProductsService(
-      page,
-      limit,
-      search,
-      sort
-    );
+    const result = await getProductsService(page, limit, search, sort);
 
     return res.status(200).json({
       success: true,
@@ -70,7 +57,7 @@ export async function getProductsController(
 export async function getProductByIdController(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) {
   try {
     const id = Number(req.params.id);
@@ -89,15 +76,12 @@ export async function getProductByIdController(
 export async function updateProductController(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) {
   try {
     const id = Number(req.params.id);
 
-    const product = await updateProductService(
-      id,
-      req.body
-    );
+    const product = await updateProductService(id, req.body);
 
     return res.status(200).json({
       success: true,
@@ -112,7 +96,7 @@ export async function updateProductController(
 export async function deleteProductController(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) {
   try {
     const id = Number(req.params.id);
@@ -131,7 +115,7 @@ export async function deleteProductController(
 export async function bulkUploadController(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) {
   try {
     if (!req.file) {
@@ -141,12 +125,14 @@ export async function bulkUploadController(
       });
     }
 
-    const count = await bulkUploadProducts(req.file.path);
+    const result = await bulkUploadProducts(req.file.path);
 
     return res.status(200).json({
       success: true,
+
       message: "Products uploaded successfully",
-      count,
+
+      ...result,
     });
   } catch (error) {
     next(error);
@@ -156,19 +142,19 @@ export async function bulkUploadController(
 export async function downloadReportController(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) {
   try {
     const workbook = await generateProductReport();
 
     res.setHeader(
       "Content-Type",
-      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
     );
 
     res.setHeader(
       "Content-Disposition",
-      'attachment; filename="products.xlsx"'
+      'attachment; filename="products.xlsx"',
     );
 
     await workbook.xlsx.write(res);

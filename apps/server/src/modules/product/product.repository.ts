@@ -116,3 +116,19 @@ export async function bulkCreateProducts(
     skipDuplicates: true,
   });
 }
+
+export async function findCategories() {
+
+  return prisma.category.findMany({
+
+    select: {
+
+      id: true,
+
+      name: true,
+
+    },
+
+  });
+
+}

@@ -8,9 +8,10 @@ const storage = multer.diskStorage({
   },
 
   filename(req, file, cb) {
-    const extension = path.extname(file.originalname);
-
-    cb(null, `${randomUUID()}${extension}`);
+    cb(
+      null,
+      `${randomUUID()}${path.extname(file.originalname)}`
+    );
   },
 });
 
@@ -18,15 +19,20 @@ export const upload = multer({
   storage,
 
   limits: {
-    fileSize: 5 * 1024 * 1024,
+    fileSize: 10 * 1024 * 1024, // 10 MB
   },
 
   fileFilter(req, file, cb) {
-    if (file.mimetype.startsWith("image/")) {
-      cb(null, true);
+    const isCsv =
+      file.mimetype === "text/csv" ||
+      file.mimetype === "application/vnd.ms-excel" ||
+      file.originalname.toLowerCase().endsWith(".csv");
 
+    if (isCsv) {
+      cb(null, true);
       return;
     }
-    cb(new Error("Only image files are allowed"));
+
+    cb(new Error("Only CSV files are allowed."));
   },
 });

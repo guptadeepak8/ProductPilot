@@ -27,14 +27,14 @@ export class SearchBar {
   readonly placeholder =
     input('Search...');
 
-  readonly value =
+  readonly searchChange =
     output<string>();
 
   search = '';
 
-  onInput(): void {
+  onSearch(): void {
 
-    this.value.emit(this.search);
+    this.searchChange.emit(this.search);
 
   }
 

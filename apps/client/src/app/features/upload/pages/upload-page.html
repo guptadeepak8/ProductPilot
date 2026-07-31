@@ -1,0 +1,163 @@
+<app-page-header
+    title="Bulk Upload"
+    subtitle="Import products using a CSV file."
+    buttonText="">
+</app-page-header>
+
+<section class="upload-card">
+
+    <div class="upload-icon">
+
+        <mat-icon>
+
+            upload_file
+
+        </mat-icon>
+
+    </div>
+
+    <h2>
+
+        Upload Product CSV
+
+    </h2>
+
+    <p>
+
+        Select a CSV file containing products.
+
+    </p>
+
+    <input
+        #fileInput
+        hidden
+        type="file"
+        accept=".csv"
+        (change)="selectFile($event)">
+
+    <button
+        mat-stroked-button
+        type="button"
+        (click)="fileInput.click()"
+        [disabled]="uploading()">
+
+        Browse CSV
+
+    </button>
+
+    @if(file()){
+
+    <div class="selected-file">
+
+        <mat-icon>
+
+            description
+
+        </mat-icon>
+
+        <div>
+
+            <div class="file-name">
+
+                {{ file()!.name }}
+
+            </div>
+
+            <div class="file-size">
+
+                {{ (file()!.size / 1024).toFixed(1) }} KB
+
+            </div>
+
+        </div>
+
+    </div>
+
+    }
+
+    @if(error()){
+
+    <div class="error">
+
+        {{ error() }}
+
+    </div>
+
+    }
+
+    <button
+        mat-flat-button
+        color="primary"
+        type="button"
+        (click)="upload()"
+        [disabled]="!file() || uploading()">
+
+        @if(uploading()){
+
+            Uploading...
+
+        }@else{
+
+            Upload Products
+
+        }
+
+    </button>
+
+    @if(uploadResult()){
+
+    <div class="result">
+
+        <h3>
+
+            Import Complete
+
+        </h3>
+
+        <p>
+
+            Imported:
+
+            <strong>
+
+                {{ uploadResult()!.imported }}
+
+            </strong>
+
+        </p>
+
+        <p>
+
+            Skipped:
+
+            <strong>
+
+                {{ uploadResult()!.skipped }}
+
+            </strong>
+
+        </p>
+
+        @if(uploadResult()!.errors.length){
+
+        <div class="errors">
+
+            @for(error of uploadResult()!.errors; track error.row){
+
+            <div>
+
+                Row {{ error.row }} — {{ error.reason }}
+
+            </div>
+
+            }
+
+        </div>
+
+        }
+
+    </div>
+
+    }
+
+</section>
