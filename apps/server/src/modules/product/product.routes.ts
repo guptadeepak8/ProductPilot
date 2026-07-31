@@ -14,10 +14,11 @@ import { validate } from "../../middleware/validate.js";
 
 import { createProductSchema } from "./product.schema.js";
 import { upload } from "../../middleware/upload.js";
+import { authenticate } from "../../middleware/auth.js";
 
 const router = Router();
 
-
+router.use(authenticate);
 
 router.post(
   "/",

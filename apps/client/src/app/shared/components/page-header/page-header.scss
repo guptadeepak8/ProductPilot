@@ -1,0 +1,57 @@
+.header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 32px;
+
+}
+
+h1 {
+
+    margin: 0;
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+    color: #fafafa;
+
+    letter-spacing: -.03em;
+
+}
+
+p {
+
+    margin-top: 6px;
+
+    color: #71717a;
+
+    font-size: 15px;
+
+}
+
+.primary-btn {
+
+    height: 42px;
+
+    padding: 0 18px;
+
+    border-radius: 10px;
+
+    background: #fafafa !important;
+
+    color: #111111 !important;
+
+    font-weight: 600;
+
+}
+
+.primary-btn mat-icon {
+
+    margin-right: 6px;
+
+}

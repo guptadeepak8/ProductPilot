@@ -8,6 +8,16 @@ export async function findUserByEmail(email: string) {
   });
 }
 
+export async function findUserById(
+  id: number
+) {
+  return prisma.user.findUnique({
+    where: {
+      id,
+    },
+  });
+}
+
 export async function createUser(
   email: string,
   password: string

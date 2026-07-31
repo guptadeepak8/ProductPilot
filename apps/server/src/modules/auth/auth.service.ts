@@ -9,6 +9,7 @@ import type {
   RegisterInput,
   LoginInput,
 } from "./auth.schema.js";
+import { generateToken } from "../../utils/jwt.js";
 
 export async function registerService(
   data: RegisterInput
@@ -23,18 +24,24 @@ export async function registerService(
     );
   }
 
-  const hashedPassword =
-    await bcrypt.hash(data.password, 10);
+  const hashedPassword = await bcrypt.hash(data.password, 10);
 
-  const user =
-    await authRepository.createUser(
+  const user = await authRepository.createUser(
       data.email,
       hashedPassword
     );
 
-  return {
-    id: user.id,
+   const token = generateToken({
+    userId: user.id,
     email: user.email,
+  });
+
+  return {
+    token,
+    user: {
+      id: user.id,
+      email: user.email,
+    },
   };
 }
 
@@ -64,18 +71,37 @@ export async function loginService(
     );
   }
 
-  const token = jwt.sign(
-    {
-      userId: user.id,
-      email: user.email,
-    },
-    process.env.JWT_SECRET!,
-    {
-      expiresIn: "1d",
-    }
-  );
+const token = generateToken({
+  userId: user.id,
+  email: user.email,
+});
 
   return {
     token,
+    user: {
+    id: user.id,
+    email: user.email,
+  },
+  };
+}
+
+export async function meService(
+  userId: number
+) {
+  const user =
+    await authRepository.findUserById(
+      userId
+    );
+
+  if (!user) {
+    throw new AppError(
+      404,
+      "User not found"
+    );
+  }
+
+  return {
+    id: user.id,
+    email: user.email,
   };
 }

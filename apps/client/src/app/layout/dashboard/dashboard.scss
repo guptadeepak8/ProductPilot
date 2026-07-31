@@ -1,0 +1,282 @@
+:host {
+  display: block;
+}
+
+.dashboard-layout {
+  height: 100vh;
+  background: #09090b;
+}
+
+mat-sidenav {
+
+  width: 270px;
+
+  border-right: 1px solid #27272a;
+
+  background: #09090b;
+
+}
+
+.sidebar {
+
+  display: flex;
+
+  flex-direction: column;
+
+  height: 100%;
+
+  background: #09090b;
+
+}
+
+.brand {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  padding: 28px 22px;
+
+  border-bottom: 1px solid #27272a;
+
+}
+
+.brand-logo {
+
+  width: 40px;
+
+  height: 40px;
+
+  border-radius: 10px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: #ffffff;
+
+  color: #09090b;
+
+  font-weight: 700;
+
+}
+
+.brand h2 {
+
+  margin: 0;
+
+  color: #fafafa;
+
+  font-size: 18px;
+
+  font-weight: 600;
+
+}
+
+.brand p {
+
+  margin: 2px 0 0;
+
+  color: #71717a;
+
+  font-size: 13px;
+
+}
+
+.nav-group {
+
+  padding: 22px 16px 0;
+
+}
+
+.group-title {
+
+  margin: 0 12px 10px;
+
+  color: #71717a;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  letter-spacing: .12em;
+
+}
+
+.nav-item {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  height: 46px;
+
+  padding: 0 14px;
+
+  margin-bottom: 4px;
+
+  border-radius: 10px;
+
+  text-decoration: none;
+
+  color: #a1a1aa;
+
+  font-size: 14px;
+
+  font-weight: 500;
+
+  transition: all .18s ease;
+
+}
+
+.nav-item:hover {
+
+  background: #18181b;
+
+  color: #ffffff;
+
+}
+
+.nav-item.active {
+
+  background: #27272a;
+
+  color: #ffffff;
+
+}
+
+.nav-item mat-icon {
+
+  width: 20px;
+
+  height: 20px;
+
+  font-size: 20px;
+
+  color: inherit;
+
+}
+
+.sidebar-footer {
+
+  margin-top: auto;
+
+  padding: 20px;
+
+  border-top: 1px solid #27272a;
+
+}
+
+.user {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+}
+
+.avatar {
+
+  width: 40px;
+
+  height: 40px;
+
+  border-radius: 50%;
+
+  background: #27272a;
+
+  color: white;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-weight: 600;
+
+}
+
+.user strong {
+
+  display: block;
+
+  color: #fafafa;
+
+  font-size: 14px;
+
+}
+
+.user p {
+
+  margin: 2px 0 0;
+
+  color: #71717a;
+
+  font-size: 12px;
+
+}
+
+mat-toolbar {
+
+  height: 72px;
+
+  padding: 0 28px;
+
+  background: #111111;
+
+  border-bottom: 1px solid #27272a;
+
+  color: #fafafa;
+
+}
+
+mat-toolbar h3 {
+
+  margin: 0;
+
+  font-size: 22px;
+
+  font-weight: 600;
+
+}
+
+.spacer {
+
+  flex: 1;
+
+}
+
+button[mat-button] {
+
+  border: 1px solid #3f3f46;
+
+  border-radius: 8px;
+
+  color: white;
+
+}
+
+button[mat-button]:hover {
+
+  background: #27272a;
+
+}
+
+main {
+
+  padding: 32px;
+
+  min-height: calc(100vh - 72px);
+
+  background: #111111;
+
+}

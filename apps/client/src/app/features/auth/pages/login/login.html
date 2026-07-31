@@ -1,0 +1,80 @@
+<mat-card class="auth-card">
+
+    <div class="logo">
+
+        PP
+
+    </div>
+
+    <div class="header">
+
+        <h1>Welcome Back</h1>
+
+        <p>Sign in to ProductPilot to continue.</p>
+
+    </div>
+
+    <form
+        [formGroup]="form"
+        (ngSubmit)="submit()">
+
+        <mat-form-field
+            appearance="outline"
+            class="full-width">
+
+            <mat-label>Email</mat-label>
+
+            <input
+                matInput
+                type="email"
+                formControlName="email"
+                placeholder="john@example.com">
+
+            <mat-error *ngIf="form.controls.email.hasError('required')">
+
+                Email is required
+
+            </mat-error>
+
+        </mat-form-field>
+
+        <mat-form-field
+            appearance="outline"
+            class="full-width">
+
+            <mat-label>Password</mat-label>
+
+            <input
+                matInput
+                type="password"
+                formControlName="password"
+                placeholder="••••••••">
+
+        </mat-form-field>
+
+        <button
+            mat-flat-button
+            color="primary"
+            class="login-btn">
+
+            Sign In
+
+        </button>
+
+    </form>
+
+    <div class="divider">
+        <span></span>
+    </div>
+
+    <p class="footer">
+
+        Don't have an account?
+
+        <a routerLink="/register">
+            Create Account
+        </a>
+
+    </p>
+
+</mat-card>

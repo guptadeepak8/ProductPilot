@@ -1,0 +1,137 @@
+<mat-sidenav-container class="dashboard-layout">
+
+  <mat-sidenav mode="side" opened>
+
+    <div class="sidebar">
+
+      <div class="brand">
+
+        <div class="brand-logo">
+          P
+        </div>
+
+        <div>
+
+          <h2>ProductPilot</h2>
+
+          <p>Inventory Management</p>
+
+        </div>
+
+      </div>
+
+      <div class="nav-group">
+
+        <p class="group-title">
+          MANAGEMENT
+        </p>
+
+        <a routerLink="categories" routerLinkActive="active" class="nav-item">
+
+          <mat-icon>category</mat-icon>
+
+          <span>Categories</span>
+
+        </a>
+
+        <a routerLink="products" routerLinkActive="active" class="nav-item">
+
+          <mat-icon>inventory_2</mat-icon>
+
+          <span>Products</span>
+
+        </a>
+
+      </div>
+
+      <div class="nav-group">
+
+        <p class="group-title">
+          OPERATIONS
+        </p>
+
+        <a routerLink="upload" routerLinkActive="active" class="nav-item">
+
+          <mat-icon>upload_file</mat-icon>
+
+          <span>Bulk Upload</span>
+
+        </a>
+
+        <a routerLink="reports" routerLinkActive="active" class="nav-item">
+
+          <mat-icon>description</mat-icon>
+
+          <span>Reports</span>
+
+        </a>
+
+      </div>
+
+      <div class="nav-group">
+
+        <p class="group-title">
+          PREFERENCES
+        </p>
+
+        <a routerLink="settings" routerLinkActive="active" class="nav-item">
+
+          <mat-icon>settings</mat-icon>
+
+          <span>Settings</span>
+
+        </a>
+
+      </div>
+
+      <div class="sidebar-footer">
+
+        <div class="user">
+
+          <div class="avatar">
+            D
+          </div>
+
+          <div>
+
+            <strong>Deepak</strong>
+
+            <p>{{ authStore.user()?.email }}</p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+
+    <mat-toolbar>
+
+      <h3>
+        Dashboard
+      </h3>
+
+      <span class="spacer"></span>
+
+      <button mat-button>
+
+        Logout
+
+      </button>
+
+    </mat-toolbar>
+
+    <main>
+
+      <router-outlet></router-outlet>
+
+    </main>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
