@@ -11,6 +11,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { Category, Product } from '../../../../shared/types';
 import { ProductService } from '../../product.service';
 import { CategoryService } from '../../../categories/category.service';
+import { ToastService } from '../../../../shared/services/toast.service';
 
 
 
@@ -39,6 +40,8 @@ export class ProductForm implements OnInit {
   private readonly productService = inject(ProductService);
 
   private readonly categoryService = inject(CategoryService);
+
+  private readonly toast = inject(ToastService);
 
   private readonly dialogRef = inject(MatDialogRef<ProductForm>);
 
@@ -115,10 +118,16 @@ export class ProductForm implements OnInit {
 
     this.productService.create(payload).subscribe({
       next: (response) => {
+        this.toast.success('Product created successfully.');
+
         this.dialogRef.close(response.data);
       },
 
-      error: console.error,
+      error: error => {
+        this.toast.error(error.error?.message ?? 'Failed to create product.');
+
+        console.error(error);
+      },
     });
   }
 
@@ -135,10 +144,16 @@ export class ProductForm implements OnInit {
 
     this.productService.update(this.product.id, payload).subscribe({
       next: (response) => {
+        this.toast.success('Product updated successfully.');
+
         this.dialogRef.close(response.data);
       },
 
-      error: console.error,
+      error: error => {
+        this.toast.error(error.error?.message ?? 'Failed to update product.');
+
+        console.error(error);
+      },
     });
   }
 

@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { PageHeader } from '../../../shared/components/page-header/page-header';
 
 import { ReportService } from '../report.service';
+import { ToastService } from '../../../shared/services/toast.service';
 
 @Component({
   selector: 'app-reports-page',
@@ -25,6 +26,9 @@ export class ReportsPage {
   private readonly service =
     inject(ReportService);
 
+  private readonly toast =
+    inject(ToastService);
+
   readonly loading =
     signal(false);
 
@@ -39,7 +43,9 @@ export class ReportsPage {
           this.loading.set(false),
         ),
       )
-      .subscribe(blob => {
+      .subscribe({
+
+        next: blob => {
 
         const url =
           URL.createObjectURL(blob);
@@ -60,6 +66,16 @@ export class ReportsPage {
         link.click();
 
         URL.revokeObjectURL(url);
+
+        this.toast.success('Report downloaded successfully.');
+
+      },
+
+      error: error => {
+
+        this.toast.error(error.error?.message ?? 'Failed to download report.');
+
+      },
 
       });
 

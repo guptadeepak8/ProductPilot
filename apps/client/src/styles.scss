@@ -319,3 +319,27 @@ img {
     border-color:#2563eb !important;
 
 }
+
+/* =====================================================
+   Toast
+===================================================== */
+
+.pp-toast {
+
+  --mdc-snackbar-container-shape: 12px;
+  --mdc-snackbar-supporting-text-color: #fafafa;
+  --mat-snack-bar-button-color: #ffffff;
+
+}
+
+.pp-toast-success {
+
+  --mdc-snackbar-container-color: #15803d;
+
+}
+
+.pp-toast-error {
+
+  --mdc-snackbar-container-color: #b91c1c;
+
+}

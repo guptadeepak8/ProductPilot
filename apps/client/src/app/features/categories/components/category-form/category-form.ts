@@ -18,6 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { Category } from '../../../../shared/types/category';
 import { CategoryService } from '../../category.service';
+import { ToastService } from '../../../../shared/services/toast.service';
 
 @Component({
   selector: 'app-category-form',
@@ -42,6 +43,8 @@ export class CategoryForm implements OnInit {
   private readonly fb = inject(FormBuilder);
 
   private readonly service = inject(CategoryService);
+
+  private readonly toast = inject(ToastService);
 
   private readonly dialogRef =
     inject(MatDialogRef<CategoryForm>);
@@ -99,11 +102,19 @@ export class CategoryForm implements OnInit {
 
         next: response => {
 
+          this.toast.success('Category created successfully.');
+
           this.dialogRef.close(response.data);
 
         },
 
-        error: console.error,
+        error: error => {
+
+          this.toast.error(error.error?.message ?? 'Failed to create category.');
+
+          console.error(error);
+
+        },
 
       });
 
@@ -124,11 +135,19 @@ export class CategoryForm implements OnInit {
 
       next: response => {
 
+        this.toast.success('Category updated successfully.');
+
         this.dialogRef.close(response.data);
 
       },
 
-      error: console.error,
+      error: error => {
+
+        this.toast.error(error.error?.message ?? 'Failed to update category.');
+
+        console.error(error);
+
+      },
 
     });
 

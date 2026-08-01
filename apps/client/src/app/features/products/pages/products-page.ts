@@ -21,6 +21,7 @@ import { Product } from '../../../shared/types/product';
 import { ConfirmDialog } from '../../../shared/components/dialogs/confirm-dialog/confirm-dialog';
 import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
 import { ProductForm } from '../components/product-form/product-form';
+import { ToastService } from '../../../shared/services/toast.service';
 @Component({
   selector: 'app-products-page',
   standalone: true,
@@ -34,6 +35,8 @@ export class ProductsPage implements OnInit {
   readonly store = inject(ProductStore);
 
   private readonly dialog = inject(MatDialog);
+
+  private readonly toast = inject(ToastService);
 
   ngOnInit(): void {
     this.loadProducts();
@@ -151,9 +154,15 @@ export class ProductsPage implements OnInit {
       this.service.delete(product.id).subscribe({
         next: () => {
           this.store.removeProduct(product.id);
+
+          this.toast.success('Product deleted successfully.');
         },
 
-        error: console.error,
+        error: error => {
+          this.toast.error(error.error?.message ?? 'Failed to delete product.');
+
+          console.error(error);
+        },
       });
     });
   }

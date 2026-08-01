@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { PageHeader } from '../../../shared/components/page-header/page-header';
 
 import { UploadService } from '../upload.service';
+import { ToastService } from '../../../shared/services/toast.service';
 
 interface UploadResult {
 
@@ -40,6 +41,9 @@ export class UploadPage {
 
   private readonly service =
     inject(UploadService);
+
+  private readonly toast =
+    inject(ToastService);
 
   readonly file =
     signal<File | null>(null);
@@ -141,11 +145,21 @@ export class UploadPage {
 
           this.file.set(null);
 
+          this.toast.success('Products uploaded successfully.');
+
         },
 
         error: error => {
 
           this.error.set(
+
+            error.error?.message ??
+
+            'Upload failed.'
+
+          );
+
+          this.toast.error(
 
             error.error?.message ??
 

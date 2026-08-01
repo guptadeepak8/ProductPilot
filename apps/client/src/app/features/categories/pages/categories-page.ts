@@ -15,6 +15,7 @@ import { CategoryForm } from '../components/category-form/category-form';
 
 import { Category } from '../../../shared/types';
 import { ConfirmDialog } from '../../../shared/components/dialogs/confirm-dialog/confirm-dialog';
+import { ToastService } from '../../../shared/services/toast.service';
 @Component({
   selector: 'app-categories-page',
   standalone: true,
@@ -25,6 +26,7 @@ import { ConfirmDialog } from '../../../shared/components/dialogs/confirm-dialog
 export class CategoriesPage implements OnInit {
   private readonly service = inject(CategoryService);
   private readonly dialog = inject(MatDialog);
+  private readonly toast = inject(ToastService);
   readonly store = inject(CategoryStore);
 
   ngOnInit(): void {
@@ -111,9 +113,17 @@ export class CategoriesPage implements OnInit {
       this.service.delete(category.id).subscribe({
         next: () => {
           this.store.removeCategory(category.id);
+
+          this.toast.success('Category deleted successfully.');
         },
 
-        error: console.error,
+        error: error => {
+
+          this.toast.error(error.error?.message ?? 'Failed to delete category.');
+
+          console.error(error);
+
+        },
       });
     });
   }

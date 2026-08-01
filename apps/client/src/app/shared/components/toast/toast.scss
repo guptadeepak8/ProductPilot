@@ -1,0 +1,21 @@
+.toast {
+
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+}
+
+.toast span {
+
+  flex: 1;
+  color: #fafafa;
+  font-weight: 600;
+
+}
+
+.toast button {
+
+  color: #ffffff;
+
+}

@@ -7,6 +7,7 @@ import { ProductForm } from './product-form';
 import { ProductService } from '../../product.service';
 import { CategoryService } from '../../../categories/category.service';
 import { Product } from '../../../../shared/types';
+import { ToastService } from '../../../../shared/services/toast.service';
 
 describe('ProductForm', () => {
   let fixture: ComponentFixture<ProductForm>;
@@ -52,6 +53,7 @@ describe('ProductForm', () => {
           },
         },
         { provide: ProductService, useValue: productService },
+        { provide: ToastService, useValue: { success: vi.fn(), error: vi.fn() } },
       ],
     }).compileComponents();
 
