@@ -23,7 +23,7 @@ describe("auth", () => {
 
     await registerService({ email: "user@example.com", password: "secret123" });
 
-    const hashedPassword = authRepository.createUser.mock.calls[0][1];
+    const hashedPassword = authRepository.createUser.mock.calls[0]![1];
     expect(hashedPassword).not.toBe("secret123");
     await expect(bcrypt.compare("secret123", hashedPassword)).resolves.toBe(true);
   });

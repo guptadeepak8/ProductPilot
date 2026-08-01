@@ -53,14 +53,14 @@ export async function findProducts(
           {
             name: {
               contains: search,
-              mode: "insensitive",
+              mode: "insensitive" as const,
             },
           },
           {
             category: {
               name: {
                 contains: search,
-                mode: "insensitive",
+                mode: "insensitive" as const,
               },
             },
           },
