@@ -50,6 +50,38 @@ cd apps/client
 pnpm dev
 ```
 
+## Running Tests
+
+The project includes a small, meaningful unit test suite for the core assessment scenarios.
+
+Run all tests from the repository root:
+
+```bash
+pnpm test
+```
+
+Run tests for one app:
+
+```bash
+pnpm --filter client test
+pnpm --filter server test
+```
+
+### Frontend Test Coverage
+
+- AuthService login success, login failure, and register success
+- Category store add, update, and delete state changes
+- Product store add, update, delete, search, sort, and pagination state changes
+- Product form validation and submit payload behavior
+
+### Backend Test Coverage
+
+- Auth password hashing, login JWT cookie response, and invalid credentials
+- Category service create, duplicate validation, and delete
+- Product service create, update, delete, search, pagination, and price sorting behavior
+- Bulk CSV upload successful import, skipped invalid category, skipped invalid price, and upload summary
+- Excel report workbook generation, expected headers, and product rows
+
 ## Environment Variables
 
 ```env
@@ -60,17 +92,17 @@ CLIENT_URL=
 
 ## Project Structure
 
-```
+```text
 apps/
- ├── client
- └── server
+├── client
+└── server
 ```
 
 The frontend uses a feature-based architecture with reusable shared components.
 
 The backend follows a layered architecture:
 
-```
+```text
 Routes
 → Controllers
 → Services
@@ -89,13 +121,6 @@ Routes
 
 A Postman collection is included for testing all endpoints.
 
-## Screenshots
-
-- Login
-- Categories
-- Products
-- Bulk Upload
-- Reports
 
 ## Future Improvements
 
