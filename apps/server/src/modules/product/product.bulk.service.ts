@@ -19,6 +19,13 @@ interface BulkUploadResult {
   }[];
 }
 
+interface BulkProduct {
+  name: string;
+  price: number;
+  categoryId: number;
+  image: string | null;
+}
+
 export async function bulkUploadProducts(
   filePath: string
 ): Promise<BulkUploadResult> {
@@ -36,7 +43,7 @@ export async function bulkUploadProducts(
 
   return new Promise((resolve, reject) => {
 
-    const products: = [];
+    const products:BulkProduct[] = [];
 
     const errors: BulkUploadResult["errors"] = [];
 

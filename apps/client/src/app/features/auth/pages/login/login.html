@@ -14,21 +14,13 @@
 
     </div>
 
-    <form
-        [formGroup]="form"
-        (ngSubmit)="submit()">
+    <form [formGroup]="form" (ngSubmit)="submit()">
 
-        <mat-form-field
-            appearance="outline"
-            class="full-width">
+        <mat-form-field appearance="outline" class="full-width">
 
             <mat-label>Email</mat-label>
 
-            <input
-                matInput
-                type="email"
-                formControlName="email"
-                placeholder="john@example.com">
+            <input matInput type="email" formControlName="email" placeholder="john@example.com">
 
             <mat-error *ngIf="form.controls.email.hasError('required')">
 
@@ -38,26 +30,36 @@
 
         </mat-form-field>
 
-        <mat-form-field
-            appearance="outline"
-            class="full-width">
+        <mat-form-field appearance="outline" class="full-width">
 
             <mat-label>Password</mat-label>
 
-            <input
-                matInput
-                type="password"
-                formControlName="password"
-                placeholder="••••••••">
+            <input matInput type="password" formControlName="password" placeholder="••••••••">
 
         </mat-form-field>
 
-        <button
-            mat-flat-button
-            color="primary"
-            class="login-btn">
+        @if(error()){
 
-            Sign In
+        <div class="login-error">
+
+            {{ error() }}
+
+        </div>
+
+        }
+
+        <button mat-flat-button color="primary" class="login-btn" [disabled]="loading() || form.invalid">
+
+           @if(loading()){
+
+      
+    <mat-spinner diameter="20"></mat-spinner>
+
+    } @else {
+
+        Sign In
+
+    }
 
         </button>
 

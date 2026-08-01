@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -10,7 +10,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { finalize } from 'rxjs';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -22,6 +23,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatProgressSpinnerModule
   ],
   templateUrl: './login.html',
   styleUrl: './login.scss',
@@ -34,36 +36,67 @@ export class Login {
   private readonly router = inject(Router);
 
   private readonly authStore = inject(AuthStore);
-
+  readonly loading = this.authStore.loading;
+  readonly error = signal('');
   form = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
+    email: ['test@test.com', [Validators.required, Validators.email]],
 
-    password: ['', Validators.required],
+    password: ['123456', Validators.required],
   });
 
   submit(): void {
-    if (this.form.invalid) {
-      this.form.markAllAsTouched();
-      return;
-    }
-    this.authStore.setLoading(true);
 
-    this.authService.login(this.form.getRawValue()).subscribe({
+  if (this.form.invalid) {
+
+    this.form.markAllAsTouched();
+
+    return;
+
+  }
+
+  this.authStore.setLoading(true);
+
+  this.error.set('');
+
+  this.authService
+    .login(this.form.getRawValue())
+    .pipe(
+      finalize(() => {
+        this.authStore.setLoading(false);
+      })
+    )
+    .subscribe({
+
       next: (response) => {
+
         this.authStore.setUser(response.data);
 
-        this.authStore.setLoading(false);
-
-        console.log(response);
-
         this.router.navigateByUrl('/dashboard');
+
       },
 
       error: (error) => {
+
         console.error(error);
 
-        this.authStore.setLoading(false);
+        if (error.status === 0) {
+
+          this.error.set(
+            'Unable to connect to the server. Please make sure the backend is running.'
+          );
+
+          return;
+
+        }
+
+        this.error.set(
+          error.error?.message ??
+          'Login failed. Please try again.'
+        );
+
       },
+
     });
-  }
+
+}
 }

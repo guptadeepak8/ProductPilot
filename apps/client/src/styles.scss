@@ -265,3 +265,57 @@ img {
   border-radius: 10px;
 
 }
+
+.pp-dialog .mat-mdc-text-field-wrapper,
+.auth-card .mat-mdc-text-field-wrapper{
+
+    background:#18181b !important;
+
+    transition:.2s;
+
+}
+
+.pp-dialog .mat-mdc-text-field-wrapper:hover,
+.auth-card .mat-mdc-text-field-wrapper:hover{
+
+    background:#202024 !important;
+
+}
+
+.pp-dialog .mdc-text-field__input,
+.auth-card .mdc-text-field__input{
+
+    color:#fafafa !important;
+
+    caret-color:#2563eb;
+
+}
+
+.pp-dialog .mdc-floating-label,
+.auth-card .mdc-floating-label{
+
+    color:#a1a1aa !important;
+
+}
+
+.pp-dialog .mdc-notched-outline__leading,
+.pp-dialog .mdc-notched-outline__notch,
+.pp-dialog .mdc-notched-outline__trailing,
+.auth-card .mdc-notched-outline__leading,
+.auth-card .mdc-notched-outline__notch,
+.auth-card .mdc-notched-outline__trailing{
+
+    border-color:#3f3f46 !important;
+
+}
+
+.pp-dialog .mdc-text-field--focused .mdc-notched-outline__leading,
+.pp-dialog .mdc-text-field--focused .mdc-notched-outline__notch,
+.pp-dialog .mdc-text-field--focused .mdc-notched-outline__trailing,
+.auth-card .mdc-text-field--focused .mdc-notched-outline__leading,
+.auth-card .mdc-text-field--focused .mdc-notched-outline__notch,
+.auth-card .mdc-text-field--focused .mdc-notched-outline__trailing{
+
+    border-color:#2563eb !important;
+
+}

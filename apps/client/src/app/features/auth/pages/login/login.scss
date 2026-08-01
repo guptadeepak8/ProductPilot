@@ -127,3 +127,44 @@ form{
 
     text-decoration:underline;
 }
+.login-error{
+
+    padding:14px 16px;
+
+    border-radius:12px;
+
+    background:rgba(239,68,68,.12);
+
+    border:1px solid rgba(239,68,68,.3);
+
+    color:#fca5a5;
+
+    font-size:14px;
+
+}
+
+.login-btn{
+
+    height:54px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+.login-btn mat-spinner{
+
+    --mdc-circular-progress-active-indicator-color:white;
+
+}
+
+.login-btn ::ng-deep circle {
+
+    stroke: #ffffff !important;
+
+}
