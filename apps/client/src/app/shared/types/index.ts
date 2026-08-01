@@ -1,5 +1,3 @@
-import { Type } from "@angular/core";
-
 export * from "./category"
 export * from "./product"
 
@@ -23,21 +21,6 @@ export interface AuthResponse {
   message: string;
   data: User;
 }
-
-export interface DialogConfig<T = unknown> {
-
-  title: string;
-
-  subtitle?: string;
-
-  component: Type<T>;
-
-  inputs?: Record<string, unknown>;
-
-  width?: string;
-
-}
-
 
 export interface BulkUploadResponse {
 

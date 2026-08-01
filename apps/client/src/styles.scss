@@ -1,13 +1,11 @@
 @use '@angular/material' as mat;
 @use './styles/variables';
-@use './styles/mixins';
 
 /* =====================================================
    Angular Material Theme
 ===================================================== */
 
 html {
-
   @include mat.theme((
     color: (
       primary: mat.$azure-palette,
@@ -16,7 +14,6 @@ html {
     typography: Roboto,
     density: 0,
   ));
-
 }
 
 /* =====================================================
@@ -25,51 +22,36 @@ html {
 
 html,
 body {
-
   width: 100%;
   height: 100%;
-
 }
 
 body {
-
   margin: 0;
-
   font-family: 'Inter', sans-serif;
-
   background: #09090b;
-
   color: #fafafa;
-
 }
 
 *,
 *::before,
 *::after {
-
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
 }
 
 button,
 input {
-
   font-family: inherit;
-
 }
 
 a {
-
   text-decoration: none;
-
 }
 
 img {
-
   max-width: 100%;
-
 }
 
 /* =====================================================
@@ -77,58 +59,33 @@ img {
 ===================================================== */
 
 .header h1 {
-
   color: #fafafa;
-
   font-size: 2rem;
-
   font-weight: 700;
-
 }
 
-.header p {
-
-  color: #a1a1aa;
-
-}
-
+.header p,
 .footer {
-
   color: #a1a1aa;
-
 }
 
 .footer a {
-
   color: #fafafa;
-
 }
 
 /* =====================================================
-   Primary Button
+   Buttons
 ===================================================== */
 
 .mat-mdc-unelevated-button.mat-primary {
-
-  background: linear-gradient(
-    135deg,
-    #2563eb,
-    #1d4ed8
-  ) !important;
-
+  background: linear-gradient(135deg, #2563eb, #1d4ed8) !important;
   color: #ffffff !important;
-
   transition: .25s;
-
 }
 
 .mat-mdc-unelevated-button.mat-primary:hover {
-
   transform: translateY(-2px);
-
-  box-shadow:
-    0 15px 35px rgba(37,99,235,.45);
-
+  box-shadow: 0 15px 35px rgba(37, 99, 235, .45);
 }
 
 /* =====================================================
@@ -136,166 +93,76 @@ img {
 ===================================================== */
 
 .pp-dialog .mat-mdc-dialog-surface {
-
   background: #111111;
-
   color: #fafafa;
-
   border: 1px solid #27272a;
-
   border-radius: 18px;
-
-  box-shadow:
-    0 24px 80px rgba(0,0,0,.55);
-
+  box-shadow: 0 24px 80px rgba(0, 0, 0, .55);
 }
-
-/* ---------- Title ---------- */
 
 .pp-dialog .mdc-dialog__title,
 .pp-dialog .mat-mdc-dialog-title,
 .pp-dialog h2[mat-dialog-title] {
-
   color: #fafafa !important;
-
   font-size: 24px !important;
-
   font-weight: 700 !important;
-
   letter-spacing: -.02em;
-
 }
-
-/* ---------- Content ---------- */
 
 .pp-dialog .mat-mdc-dialog-content {
-
   color: #fafafa;
-
 }
 
-/* ---------- Footer ---------- */
-
 .pp-dialog .mat-mdc-dialog-actions {
-
   border-top: 1px solid #27272a;
+}
 
+.pp-dialog .mat-mdc-button {
+  color: #d4d4d8;
+}
+
+.pp-dialog .mat-mdc-unelevated-button {
+  border-radius: 10px;
 }
 
 /* =====================================================
-   Material Inputs
+   Material Form Fields
 ===================================================== */
 
-.pp-dialog .mat-mdc-text-field-wrapper {
-
+.pp-dialog .mat-mdc-text-field-wrapper,
+.auth-card .mat-mdc-text-field-wrapper {
   background: #18181b !important;
-
   border-radius: 12px !important;
+  transition: .2s;
+}
 
+.pp-dialog .mat-mdc-text-field-wrapper:hover,
+.auth-card .mat-mdc-text-field-wrapper:hover {
+  background: #202024 !important;
 }
 
 .pp-dialog .mdc-text-field--outlined {
-
   --mdc-outlined-text-field-outline-color: #3f3f46;
-
   --mdc-outlined-text-field-hover-outline-color: #5b5b63;
-
   --mdc-outlined-text-field-focus-outline-color: #2563eb;
-
 }
 
 .pp-dialog .mdc-text-field__input,
-.pp-dialog input.mat-mdc-input-element {
-
+.pp-dialog input.mat-mdc-input-element,
+.auth-card .mdc-text-field__input {
   color: #fafafa !important;
-
   caret-color: #2563eb !important;
-
 }
 
 .pp-dialog .mdc-text-field__input::placeholder,
 .pp-dialog input::placeholder {
-
   color: #71717a !important;
-
 }
 
 .pp-dialog .mdc-floating-label,
-.pp-dialog .mat-mdc-floating-label {
-
+.pp-dialog .mat-mdc-floating-label,
+.auth-card .mdc-floating-label {
   color: #a1a1aa !important;
-
-}
-
-.pp-dialog .mat-mdc-form-field-error {
-
-  color: #ef4444 !important;
-
-}
-
-/* =====================================================
-   Select
-===================================================== */
-
-.pp-dialog .mat-mdc-select-value,
-.pp-dialog .mat-mdc-select-value-text {
-
-  color: #fafafa !important;
-
-}
-
-.pp-dialog .mat-mdc-select-arrow {
-
-  color: #a1a1aa !important;
-
-}
-
-/* =====================================================
-   Dialog Buttons
-===================================================== */
-
-.pp-dialog .mat-mdc-button {
-
-  color: #d4d4d8;
-
-}
-
-.pp-dialog .mat-mdc-unelevated-button {
-
-  border-radius: 10px;
-
-}
-
-.pp-dialog .mat-mdc-text-field-wrapper,
-.auth-card .mat-mdc-text-field-wrapper{
-
-    background:#18181b !important;
-
-    transition:.2s;
-
-}
-
-.pp-dialog .mat-mdc-text-field-wrapper:hover,
-.auth-card .mat-mdc-text-field-wrapper:hover{
-
-    background:#202024 !important;
-
-}
-
-.pp-dialog .mdc-text-field__input,
-.auth-card .mdc-text-field__input{
-
-    color:#fafafa !important;
-
-    caret-color:#2563eb;
-
-}
-
-.pp-dialog .mdc-floating-label,
-.auth-card .mdc-floating-label{
-
-    color:#a1a1aa !important;
-
 }
 
 .pp-dialog .mdc-notched-outline__leading,
@@ -303,10 +170,8 @@ img {
 .pp-dialog .mdc-notched-outline__trailing,
 .auth-card .mdc-notched-outline__leading,
 .auth-card .mdc-notched-outline__notch,
-.auth-card .mdc-notched-outline__trailing{
-
-    border-color:#3f3f46 !important;
-
+.auth-card .mdc-notched-outline__trailing {
+  border-color: #3f3f46 !important;
 }
 
 .pp-dialog .mdc-text-field--focused .mdc-notched-outline__leading,
@@ -314,10 +179,21 @@ img {
 .pp-dialog .mdc-text-field--focused .mdc-notched-outline__trailing,
 .auth-card .mdc-text-field--focused .mdc-notched-outline__leading,
 .auth-card .mdc-text-field--focused .mdc-notched-outline__notch,
-.auth-card .mdc-text-field--focused .mdc-notched-outline__trailing{
+.auth-card .mdc-text-field--focused .mdc-notched-outline__trailing {
+  border-color: #2563eb !important;
+}
 
-    border-color:#2563eb !important;
+.pp-dialog .mat-mdc-form-field-error {
+  color: #ef4444 !important;
+}
 
+.pp-dialog .mat-mdc-select-value,
+.pp-dialog .mat-mdc-select-value-text {
+  color: #fafafa !important;
+}
+
+.pp-dialog .mat-mdc-select-arrow {
+  color: #a1a1aa !important;
 }
 
 /* =====================================================
@@ -325,21 +201,15 @@ img {
 ===================================================== */
 
 .pp-toast {
-
   --mdc-snackbar-container-shape: 12px;
   --mdc-snackbar-supporting-text-color: #fafafa;
   --mat-snack-bar-button-color: #ffffff;
-
 }
 
 .pp-toast-success {
-
   --mdc-snackbar-container-color: #15803d;
-
 }
 
 .pp-toast-error {
-
   --mdc-snackbar-container-color: #b91c1c;
-
 }
